@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:MVVMDemo.ViewModels"
+             x:Class="MVVMDemo.Views.ProductView">
+
+    <ContentPage.BindingContext>
+        <vm:ProductViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Product Name"/>
+            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Name}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="Product Price"/>
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Price}" Keyboard="Numeric"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Product Availability"/>
+            <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding IsAvailable}" />
+
+            <Button Grid.Row="3" Grid.Column="0" Text="Send Email" Command="{Binding SendEmailCommand}"/>
+            <Button Grid.Row="3" Grid.Column="1" Text="Clear Info" Command="{Binding ClearCommand}"/>
+
+            <StackLayout Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                <Label Text="{Binding Name, StringFormat='Product Name: {0}'}"/>
+                <Label Text="{Binding Price, StringFormat='Product Price: {0:N2}'}"/>
+                <CheckBox IsChecked="{Binding IsAvailable}"/>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
